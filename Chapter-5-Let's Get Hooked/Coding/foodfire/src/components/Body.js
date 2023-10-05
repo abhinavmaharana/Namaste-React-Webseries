@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react"
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
   
 // Body Component for body section: It contain all restaurant cards
 // We are mapping restaurantList array and passing data to RestaurantCard component as props with unique key as index
@@ -74,7 +75,7 @@ const Body = () => {
         </div>
         <div className="restaurant-list">
           {listOfRestaurants?.map((restaurant) => {
-            return <RestaurantCard key={restaurant.info.id} {...restaurant.info} />;
+            return <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}><RestaurantCard  {...restaurant.info} /></Link>;
           })}
         </div>
     </div>

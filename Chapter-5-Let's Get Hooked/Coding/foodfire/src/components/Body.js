@@ -2,6 +2,7 @@ import {useEffect, useState} from "react"
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
   
 // Body Component for body section: It contain all restaurant cards
 // We are mapping restaurantList array and passing data to RestaurantCard component as props with unique key as index
@@ -26,6 +27,10 @@ const Body = () => {
     
     setListOfRestaurants(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
   }
+
+  const onlineStatus = useOnlineStatus();
+
+  if(onlineStatus === false) return <h1>Looks like you're offline!! Please check your internet connection</h1>
 
   // if(listOfRestaurants?.length === 0) {
   //   return <Shimmer />;

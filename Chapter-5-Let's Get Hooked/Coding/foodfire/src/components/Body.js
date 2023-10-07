@@ -36,22 +36,22 @@ const Body = () => {
   //   return <Shimmer />;
   // }
 
-  return listOfRestaurants.length === 0 ? (
+  return listOfRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
-        <div className="filter">
-          <div className="search-container">
+        <div className="filter flex">
+          <div className="search m-4 p-4">
             <input
               type="text"
-              className="search-input"
+              className="border border-solid border-black"
               placeholder="Search a restaurant you want..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             >
             </input>
             <button
-              className="search-btn"
+              className="px-4 py-2 bg-green-100 m-4 rounded-lg"
               onClick={() => {
                 const filteredList = listOfRestaurants.filter((listOfRestaurants) => listOfRestaurants?.info?.name.toLowerCase().includes(searchText.toLowerCase()));
 
@@ -61,7 +61,8 @@ const Body = () => {
               Search
             </button>
           </div>
-          <button className="filter-btn" onClick={() => {
+          <div className="search m-4 p-4 flex items-center">
+          <button className="px-4 py-2 bg-gray-100 rounded-lg" onClick={() => {
             // Filter logic here
             const filteredList = listOfRestaurants.filter(
               (res) => res.info.avgRating > 4
@@ -69,16 +70,17 @@ const Body = () => {
             setListOfRestaurants(filteredList)
           }} >Top Rated Restaurants</button>
           
-          <button className="filter-btn" onClick={() => {
+          <button className="px-4 py-2 bg-gray-100 rounded-lg" onClick={() => {
             // Filter logic here
             const filteredList = listOfRestaurants.filter(
               (res) => res.info.deliveryTime < 20
             );
             setListOfRestaurants(filteredList)
           }} >Fast Delivery Time</button>
+          </div>
 
         </div>
-        <div className="restaurant-list">
+        <div className="flex flex-wrap">
           {listOfRestaurants?.map((restaurant) => {
             return <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}><RestaurantCard  {...restaurant.info} /></Link>;
           })}

@@ -4,7 +4,7 @@ const Footer = () => {
     return (
       <div className="footer">
         Created By
-        <i class="fa-solid fa-heart"></i>
+        <i className="fa-solid fa-heart"></i>
         <a href="https://www.linkedin.com/in/abhinavmaharana/" target="_blank">
           Abhinav Maharana
         </a>

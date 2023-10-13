@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react"
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withPromotedLabel} from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -27,6 +27,8 @@ const Body = () => {
     
     setListOfRestaurants(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
   }
+
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   const onlineStatus = useOnlineStatus();
 
@@ -82,7 +84,16 @@ const Body = () => {
         </div>
         <div className="flex flex-wrap">
           {listOfRestaurants?.map((restaurant) => {
-            return <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}><RestaurantCard  {...restaurant.info} /></Link>;
+            {/* If the restaurant is promoted then add a promoted label to it */}
+            return (
+              <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id}>
+                {restaurant.info.promoted ? ( 
+                  <RestaurantCardPromoted {...restaurant.info} />
+                ) : (
+                  <RestaurantCard  {...restaurant.info} />
+                )}
+              </Link>
+            );
           })}
         </div>
     </div>

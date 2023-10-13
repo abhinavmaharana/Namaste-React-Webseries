@@ -33,4 +33,36 @@ const RestaurantCard = ({
   );
 };
 
+
+export const withPromotedLabel = (RestaurantCard) => {
+  return ({
+    cloudinaryImageId,
+    name,
+    cuisines,
+    areaName,
+    lastMileTravelString,
+    costForTwo,
+    avgRating,
+    sla,
+  }) => {
+    return (
+      <div>
+        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
+          Promoted
+        </label>
+        <RestaurantCard 
+          cloudinaryImageId={cloudinaryImageId}
+          name={name}
+          cuisines={cuisines}
+          areaName={areaName}
+          lastMileTravelString={lastMileTravelString}
+          costForTwo={costForTwo}
+          avgRating={avgRating}
+          sla={sla}
+        />
+      </div>
+    )
+  }
+}
+
 export default RestaurantCard;

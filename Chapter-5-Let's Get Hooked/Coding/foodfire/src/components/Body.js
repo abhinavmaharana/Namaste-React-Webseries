@@ -1,8 +1,9 @@
-import {useEffect, useState} from "react"
+import { useState, useEffect, useContext } from "react";
 import RestaurantCard, {withPromotedLabel} from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
   
 // Body Component for body section: It contain all restaurant cards
 // We are mapping restaurantList array and passing data to RestaurantCard component as props with unique key as index
@@ -37,6 +38,7 @@ const Body = () => {
   // if(listOfRestaurants?.length === 0) {
   //   return <Shimmer />;
   // }
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   return listOfRestaurants?.length === 0 ? (
     <Shimmer />
@@ -80,7 +82,14 @@ const Body = () => {
             setListOfRestaurants(filteredList)
           }} >Fast Delivery Time</button>
           </div>
-
+          <div className="search m-4 p-4 flex items-center">
+            <label>UserName : </label>
+            <input
+              className="border border-black p-2"
+              value={loggedInUser}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+        </div>
         </div>
         <div className="flex flex-wrap">
           {listOfRestaurants?.map((restaurant) => {

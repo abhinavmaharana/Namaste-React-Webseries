@@ -1,4 +1,4 @@
-import { CDN_URL } from "../utils/constants";
+import { CON_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import {addItem} from "../utils/cartSlice"
 
@@ -38,7 +38,7 @@ const ItemList = ({items, dummy}) => {
                                 Add +
                             </button>
                         </div>
-                        <img src={CDN_URL + item.card.info.imageId} className="w-full" />
+                        <img src={CON_URL + item.card.info.imageId} className="w-full" />
                     </div>
                 </div>
             ))}
